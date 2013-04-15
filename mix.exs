@@ -9,12 +9,23 @@ defmodule Fwc.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    []
+    [ applications: [
+        :crypto, :ranch, :cowboy, :exconfig, :emysql
+      ] ++ env_applications(Mix.env),
+      mod: {Fwc.App, []} ]
   end
+
+  def env_applications(:dev), do: [:exreloader]
+  def env_applications(_), do: [] 
 
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    []
+    [
+      {:cowboy, github: "extend/cowboy"},
+        {:ranch, github: "extend/ranch"},
+      {:exconfig, github: "yrashk/exconfig"},
+      {:exreloader, github: "yrashk/exreloader"},
+    ]
   end
 end

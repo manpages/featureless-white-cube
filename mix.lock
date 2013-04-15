@@ -1,0 +1,5 @@
+[ "cowboy": {:git,"https://github.com/extend/cowboy.git","5755d1155f4578419a301abb33aa7bac30020d97",[]},
+  "exconfig": {:git,"https://github.com/yrashk/exconfig.git","9f02d06c3fba132839cff1f9a639fd63aa2155a3",[]},
+  "exreloader": {:git,"https://github.com/yrashk/exreloader.git","0698218d917d731a267be929fcfac07782b5a74c",[]},
+  "genx": {:git,"https://github.com/yrashk/genx.git","1a37f862edba8a8bec342ae4945fac623f2e49ab",[]},
+  "ranch": {:git,"https://github.com/extend/ranch.git","aeceeae9b2df201a20d201cc7c23341ffdc170f3",[]} ]
