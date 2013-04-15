@@ -25,6 +25,7 @@ defmodule Fwc.Mixfile do
       {:cowboy, github: "extend/cowboy"},
         {:ranch, github: "extend/ranch"},
       {:exconfig, github: "yrashk/exconfig"},
+      {:xup, github: "yrashk/xup"},
       {:exreloader, github: "yrashk/exreloader"},
     ]
   end
