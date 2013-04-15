@@ -10,7 +10,7 @@ defmodule Fwc.Mixfile do
   # Configuration for the OTP application
   def application do
     [ applications: [
-        :crypto, :ranch, :cowboy, :exconfig, :emysql
+        :crypto, :ranch, :cowboy, :exconfig,
       ] ++ env_applications(Mix.env),
       mod: {Fwc.App, []} ]
   end
