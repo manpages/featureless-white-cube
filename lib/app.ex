@@ -9,7 +9,8 @@ defmodule Fwc.App do
   
   def start(_, _) do
     env = Application.environment :fwc 
-    {:ok, _} = :cowboy.start_http :http, 100, [port: env[:http_port]], [env: [dispatch: env[:http_dispatch]]]
+    :io.format "~p", [env[:http_dispatch]]
+    {:ok, _} = :cowboy.start_http :http, 100, [port: env[:http_port]], [env: [dispatch: :cowboy_router.compile(env[:http_dispatch])]]
     {:ok, _} = Fwc.Sup.start_link
   end
 end
