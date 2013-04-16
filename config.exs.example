@@ -1,3 +1,4 @@
 Fwc.Config.config do
   config.http_port 8586
+  config.games_dispatch [{"/parse", Fwc.HTTP.Parser, []}, {"/game", Fwc.HTTP.Game, []}]
 end
