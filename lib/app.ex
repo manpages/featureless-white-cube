@@ -1,7 +1,13 @@
 import Xup
 
 defsupervisor Fwc.Sup, strategy: :one_for_one do
-  worker do: [id: Crazybingo.MockingBird]
+  def add_game(game_srv) when is_atom(game_srv) do
+    IO.puts "#{__MODULE__}: add_game!"
+    :supervisor.start_child Fwc.Sup.Games, [game_srv]
+  end
+  supervisor Games, strategy: :simple_one_for_one do
+    worker do: [id: Fwc.GameStarter]
+  end
 end
 
 defmodule Fwc.App do
@@ -14,22 +20,8 @@ defmodule Fwc.App do
   end
 end
 
-defmodule Crazybingo.MockingBird do
-  use GenServer.Behaviour
-  import GenX.GenServer
-
-  defrecord State, id: nil
-
-  defcall get_state, from: _from, state: state, do: {:reply, state, state}
-
-  def start_link do
-    :gen_server.start_link __MODULE__, nil, []
+defmodule Fwc.GameStarter do
+  def start_link(game_srv) when is_atom(game_srv) do
+    :gen_server.start_link game_srv, nil, []
   end
-
-  def start_link(rid) do
-    :gen_server.start_link __MODULE__, rid, []
-  end
-
-  def init(rid), do: {:ok, State.new(id: rid)}
-
 end
