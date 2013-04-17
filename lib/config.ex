@@ -2,7 +2,7 @@ defmodule Fwc.Config do
   use ExConfig.Object
 
   defproperty http_port, default: 55556
-  defproperty games_dispatch, default: {"/", Fwc.Game, []}
+  defproperty games_dispatch, default: [{"/", Fwc.Game, []}]
 
   def sys_config(config) do
     [
