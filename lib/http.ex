@@ -4,7 +4,6 @@ defmodule Fwc.HTTP do
     def handle(req, state) do 
       {:ok, {Fwc.Balances, uuid, pid}} = Fwc.Sup.add_game Fwc.Balances
       {:ok, req} = :cowboy_req.reply 302, [{"Location", <<"/balances/", uuid :: binary>>}], "", req 
-      :io.format '~p~n(uuid=~p)', [req, uuid]
       {:ok, req, state}
     end
     def terminate(_, _, _), do: :ok
