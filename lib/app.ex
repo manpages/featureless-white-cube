@@ -2,12 +2,15 @@ import Xup
 
 defsupervisor Fwc.Sup, strategy: :one_for_one do
   def add_game(game_srv) when is_atom(game_srv) do
-    IO.puts "#{__MODULE__}: add_game!"
-    :supervisor.start_child Fwc.Sup.Games, [game_srv]
+    {:ok, pid} = :supervisor.start_child Fwc.Sup.Games, [game_srv]
+    uuid = :ossp_uuid.make :v4, :text
+    Fwc.Ets.Srv.register_game game_srv, uuid, pid
+    {:ok, {game_srv, uuid, pid}}
   end
   supervisor Games, strategy: :simple_one_for_one do
     worker do: [id: Fwc.GameStarter]
   end
+  worker do: [id: Fwc.Ets.Srv]
 end
 
 defmodule Fwc.App do

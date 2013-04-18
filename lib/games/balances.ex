@@ -2,8 +2,7 @@ defmodule Fwc.Balances do
   use GenServer.Behaviour
   import GenX.GenServer
 
-  def init(input) do 
-    IO.puts "#{__MODULE__}:init(#{inspect input})"
+  def init(_) do 
     {:ok, nil}
   end
 end

@@ -10,7 +10,7 @@ defmodule Fwc.Mixfile do
   # Configuration for the OTP application
   def application do
     [ applications: [
-        :crypto, :ranch, :cowboy, :exconfig,
+        :crypto, :ranch, :cowboy, :exconfig, :ossp_uuid
       ] ++ env_applications(Mix.env),
       mod: {Fwc.App, []} ]
   end
@@ -27,6 +27,7 @@ defmodule Fwc.Mixfile do
       {:exconfig, github: "yrashk/exconfig"},
       {:xup, github: "yrashk/xup"},
       {:exreloader, github: "yrashk/exreloader"},
+      {:ossp_uuid, github: "yrashk/erlang-ossp-uuid"},
     ]
   end
 end
